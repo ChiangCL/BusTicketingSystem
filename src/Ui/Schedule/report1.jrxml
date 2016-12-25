@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="74e7d276-01e8-4002-a11e-bc96760587db">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     STAFF."STAFF_ID" AS STAFF_STAFF_ID,
+     STAFF."STAFF_NAME" AS STAFF_STAFF_NAME,
+     STAFF."STAFF_IC" AS STAFF_STAFF_IC,
+     STAFF."ADDRESS" AS STAFF_ADDRESS,
+     STAFF."CONTACT_NO" AS STAFF_CONTACT_NO,
+     STAFF."POSITION" AS STAFF_POSITION,
+     STAFF."PASSWORD" AS STAFF_PASSWORD,
+     BUS."BUS_ID" AS BUS_BUS_ID,
+     BUS."BUS_NO" AS BUS_BUS_NO,
+     BUS."SEAT" AS BUS_SEAT,
+     BUS."BUS_MODEL" AS BUS_BUS_MODEL,
+     BUS."STAFF_ID" AS BUS_STAFF_ID
+FROM
+     "NBUSER"."BUS" BUS INNER JOIN "NBUSER"."STAFF" STAFF ON BUS."STAFF_ID" = STAFF."STAFF_ID"
+WHERE
+     BUS."BUS_NO" = BUS_NO]]>
+	</queryString>
+	<field name="STAFF_STAFF_ID" class="java.lang.String"/>
+	<field name="STAFF_STAFF_NAME" class="java.lang.String"/>
+	<field name="STAFF_STAFF_IC" class="java.lang.String"/>
+	<field name="STAFF_ADDRESS" class="java.lang.String"/>
+	<field name="STAFF_CONTACT_NO" class="java.lang.String"/>
+	<field name="STAFF_POSITION" class="java.lang.String"/>
+	<field name="STAFF_PASSWORD" class="java.lang.String"/>
+	<field name="BUS_BUS_ID" class="java.lang.String"/>
+	<field name="BUS_BUS_NO" class="java.lang.String"/>
+	<field name="BUS_SEAT" class="java.lang.Integer"/>
+	<field name="BUS_BUS_MODEL" class="java.lang.String"/>
+	<field name="BUS_STAFF_ID" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

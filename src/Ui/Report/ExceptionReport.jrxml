@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ExceptionReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4a85f28d-7df8-41c2-af13-57c56848c5e2">
+	<property name="ireport.zoom" value="0.9090909090909101"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="1"/>
+	<parameter name="Amount" class="java.lang.Double"/>
+	<queryString>
+		<![CDATA[SELECT
+     PAYMENT."PAYMENT_ID" AS PAYMENT_PAYMENT_ID,
+     PAYMENT."PAYMENT_ID" AS PAYMENT_PAYMENT_ID,
+     PAYMENT."TOTAL_AMOUNT" AS PAYMENT_TOTAL_AMOUNT,
+     PAYMENT."PAYMENT_DATE" AS PAYMENT_PAYMENT_DATE,
+     PAYMENT."DISCOUNT" AS PAYMENT_DISCOUNT,
+     PACKAGE."DESTINATION" AS PACKAGE_DESTINATION,
+     MEMBER."MEMBER_NAME" AS MEMBER_MEMBER_NAME
+FROM
+     "NBUSER"."PAYMENT" PAYMENT INNER JOIN "NBUSER"."ORDER_DETAIL" ORDER_DETAIL ON PAYMENT."ORDER_ID" = ORDER_DETAIL."ORDER_ID"
+     INNER JOIN "NBUSER"."PACKAGE" PACKAGE ON ORDER_DETAIL."PACKAGE_ID" = PACKAGE."PACKAGE_ID"
+     INNER JOIN "NBUSER"."MEMBER" MEMBER ON PAYMENT."MEMBER_ID" = MEMBER."MEMBER_ID"
+WHERE
+     TOTAL_AMOUNT >= $P{Amount}]]>
+	</queryString>
+	<field name="PAYMENT_PAYMENT_ID" class="java.lang.String"/>
+	<field name="PAYMENT_TOTAL_AMOUNT" class="java.lang.Double"/>
+	<field name="PAYMENT_PAYMENT_DATE" class="java.lang.String"/>
+	<field name="PAYMENT_DISCOUNT" class="java.lang.Double"/>
+	<field name="PACKAGE_DESTINATION" class="java.lang.String"/>
+	<field name="MEMBER_MEMBER_NAME" class="java.lang.String"/>
+	<sortField name="PACKAGE_DESTINATION"/>
+	<variable name="Total_Amount_Sum" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{PAYMENT_TOTAL_AMOUNT}]]></variableExpression>
+	</variable>
+	<background>
+		<band height="802" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="555" height="802" uuid="73b42157-46ee-456e-a99a-1f315b6dcf1b"/>
+				<imageExpression><![CDATA["C:\\Users\\user\\Desktop\\reportimage.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="455" y="1" width="100" height="39" uuid="a6a4310c-0bf1-4f46-94fb-2ed63d7f0e64"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Generated on:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="40" width="275" height="39" uuid="5475ceaf-e62c-4ad7-a5a0-a7e83256823a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Peter Lin 74 Green St Jordan, Ipoh, 31800, Perak. Contact No :012-5304975]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="455" y="39" width="100" height="40" uuid="4c01138b-bfc1-4e75-9dc1-386287e08f8b"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="180" height="79" uuid="76a62602-f491-4ed8-9eaa-e31a55e31a01"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="40" isBold="true" isItalic="true" isUnderline="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[iLikeBus]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="0" width="275" height="40" uuid="396e4998-9586-4da2-95fd-8a7aefaf162b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="24" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Exception Report ]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="75" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="77" height="42" uuid="c9332006-cd61-46b2-9c60-430ec1f809de"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Description :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="77" y="0" width="232" height="42" uuid="35c2005f-7f86-433f-ad3e-3829644e08ec"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[List of records that total amount above :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="42" width="34" height="33" uuid="69d59b3d-207c-4aab-96d1-e64fd6292b96"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[No]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="309" y="0" width="71" height="42" uuid="939bf1c1-5e6d-4cf9-9264-ecaf700baa1f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Amount}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="34" y="42" width="55" height="33" uuid="0a28c8de-e1ac-40b6-aafa-f7dd4ebd4c4a"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Payment ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="269" y="42" width="86" height="33" uuid="02a5e868-d4ff-4b17-b922-4806b7c5ff22"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Payment Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="42" width="100" height="33" uuid="b1f25dfb-f2a0-45b3-94a7-d45efe415c0e"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Total Amount (RM)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="89" y="42" width="180" height="33" uuid="b4206561-da8d-4836-827b-734da9751b94"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Destination]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="355" y="42" width="100" height="33" uuid="84646c67-fb8e-4905-9574-6afd65d3bbeb"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Member Name]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="34" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="34" height="34" uuid="833c9e9e-8871-4a68-af52-6c0d76ba9af4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="34" y="0" width="55" height="34" uuid="d86abda4-b9f1-476c-9be1-b47216625028"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PAYMENT_PAYMENT_ID}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="455" y="0" width="100" height="34" uuid="6096f3c9-8941-4225-b609-6fe333e04ef3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PAYMENT_TOTAL_AMOUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="269" y="0" width="86" height="34" uuid="33a56b21-6d81-46d0-8eb9-0905751d4b89"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PAYMENT_PAYMENT_DATE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="89" y="0" width="180" height="34" uuid="2e03c5f1-dcd1-4bc1-9377-b79cef6bfac7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PACKAGE_DESTINATION}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement x="355" y="0" width="100" height="34" uuid="98dca9b5-c3b3-46a8-9d71-ad32860cf5f4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MEMBER_MEMBER_NAME}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="355" y="1" width="100" height="34" uuid="68fbb55f-ed04-4a0f-a693-b8e3fecbf1d3">
+					<property name="net.sf.jasperreports.export.pdf.tag.table"/>
+					<property name="net.sf.jasperreports.export.pdf.tag.th"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<text><![CDATA[Grand Total :]]></text>
+			</staticText>
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement x="455" y="3" width="100" height="32" uuid="07aada51-e875-4b84-90e3-4cdf1564fc6c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{Total_Amount_Sum}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="1" width="555" height="1" uuid="0c1edb3b-d77e-4a0d-8775-3e9514a566ac"/>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="446" y="0" width="80" height="54" uuid="75fd02d5-5951-43cd-b5e9-c5c6f1389e54"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="526" y="0" width="29" height="54" uuid="32c70b50-1d54-4794-9b36-f565871e06e2"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
